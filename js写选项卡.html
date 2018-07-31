@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<style type="text/css">
+		<title></title>
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			
+			#div1 div {
+				width: 290px;
+				height: 200px;
+				display: none;
+				background: khaki;
+				color: black;
+				font-size: 16px;
+			}
+			
+			#div1 {
+				font-size: 0;
+				width: 300px;
+				padding: 20px;
+				overflow: hidden;
+			}
+			
+			#div1 input {
+				display: inline-block;
+				width: 100px;
+				height: 30px;
+				line-height: 30px;
+				border-left: 1px solid red;
+			}
+			
+			#div1 input:first-of-type {
+				border-left: none;
+			}
+			
+			.active {
+				background: darkcyan;
+				color: hotpink;
+			}
+		</style>
+		<script src="jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			$(function() {
+			    $('#div1').find('input').click(function() {
+			        $('#div1').find('input').attr('class', '');
+			        $('#div1').find('div').css('display', 'none');
+			        $(this).attr('class', 'active');
+			        $('#div1').find('div').eq($(this).index()).css('display', 'block');
+			    })
+			})
+		</script>
+	</head>
+
+	<body>
+		<div id="div1">
+			<input type="button" value="按钮1" class="active">
+			<input type="button" value="按钮2">
+			<input type="button" value="按钮3">
+			<div style="display: block;">111</div>
+			<div>222</div>
+			<div>333</div>
+		</div>
+	</body>
+
+</html>

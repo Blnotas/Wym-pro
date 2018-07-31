@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#box {
+				width: 80px;
+				height: 80px;
+				background: navy;
+				position: absolute;
+				left: 0;
+				right: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+
+		</div>
+		<script type="text/javascript">
+			var drag = function(obj) {
+
+				obj.bind("mousedown", start);
+
+				function start(event) {
+					if(event.button == 0) {
+						gapX = event.clientX - obj.offset().left;
+						gapY = event.clientY - obj.offset().top;
+
+						$(document).bind("mousemove", move);
+						$(document).bind("mouseup", stop);
+
+					}
+					return false;
+				}
+
+				function move(event) {
+					obj.css({
+						"left": (event.clientX - gapX) + "px",
+						"top": (event.clientY - gapY) + "px"
+					});
+					return false;
+				}
+
+				function stop() {
+					$(document).unbind("mousemove", move);
+					$(document).unbind("mouseup", stop);
+				}
+			}
+			obj = $("#box");
+			drag(obj);
+		</script>
+	</body>
+
+</html>
